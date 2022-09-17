@@ -13,30 +13,30 @@ const App = () => {
   const [searchValue, setSearchValue] = useState('');
 
   const getMovieRequest = async (searchValue) => {
-  const url = `http://www.omdbapi.com/?s=${searchValue}&apikey=8839a974`;
-  
-  const response = await fetch(url);
-  const responseJson = await response.json();
+    const url = `http://www.omdbapi.com/?s=${searchValue}&apikey=8839a974`;
 
-  if (responseJson.Search) {
-    setMovies(responseJson.Search);
-  }
-  
+    const response = await fetch(url);
+    const responseJson = await response.json();
+
+    if (responseJson.Search) {
+      setMovies(responseJson.Search);
+    }
+
   };
 
-  useEffect (()=>{
+  useEffect(() => {
     getMovieRequest(searchValue);
   }, [searchValue]);
   return (
 
     <div className="container-fluid movie-app">
       <div className='row d-flex align-items-center mt-3 mb-3'>
-        <MovieListHeading heading='Movies'/>
-        <SearchBox searchValue={searchValue} setSearchValue={setSearchValue}/>
+        <MovieListHeading heading='Movies' />
+        <SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
       </div>
       <div className="row">
-      <MovieList movies={movies}/>
-      </div>  
+        <MovieList movies={movies} />
+      </div>
 
 
     </div>
